@@ -29,51 +29,52 @@
 
   <button
     id="confettiButton"
-    onclick="launchConfetti()"
     class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-2xl shadow-lg text-xl transition"
   >
     Confetti
   </button>
 
   <script>
-    function launchConfetti() {
+    document.addEventListener('DOMContentLoaded', () => {
       const button = document.getElementById('confettiButton');
-      button.classList.add('shake');
-      setTimeout(() => button.classList.remove('shake'), 400);
+      button.addEventListener('click', () => {
+        button.classList.add('shake');
+        setTimeout(() => button.classList.remove('shake'), 400);
 
-      const defaults = {
-        spread: 70,
-        ticks: 100,
-        gravity: 0.9,
-        origin: { y: 0.6 },
-      };
+        const defaults = {
+          spread: 70,
+          ticks: 100,
+          gravity: 0.9,
+          origin: { y: 0.6 },
+        };
 
-      function fire(particleRatio, opts) {
-        window.confetti(Object.assign({}, defaults, opts, {
-          particleCount: Math.floor(150 * particleRatio)
-        }));
-      }
+        function fire(particleRatio, opts) {
+          confetti(Object.assign({}, defaults, opts, {
+            particleCount: Math.floor(150 * particleRatio)
+          }));
+        }
 
-      fire(0.25, {
-        spread: 26,
-        startVelocity: 55,
-        colors: ['#bb0000', '#ffffff', '#00bb00', '#0000bb']
+        fire(0.25, {
+          spread: 26,
+          startVelocity: 55,
+          colors: ['#bb0000', '#ffffff', '#00bb00', '#0000bb']
+        });
+        fire(0.2, {
+          spread: 60,
+          colors: ['#ffb703', '#fb8500', '#219ebc']
+        });
+        fire(0.35, {
+          spread: 100,
+          scalar: 0.8,
+          shapes: ['circle']
+        });
+        fire(0.1, {
+          spread: 120,
+          scalar: 1.2,
+          shapes: ['square']
+        });
       });
-      fire(0.2, {
-        spread: 60,
-        colors: ['#ffb703', '#fb8500', '#219ebc']
-      });
-      fire(0.35, {
-        spread: 100,
-        scalar: 0.8,
-        shapes: ['circle']
-      });
-      fire(0.1, {
-        spread: 120,
-        scalar: 1.2,
-        shapes: ['square']
-      });
-    }
+    });
   </script>
 </body>
 </html>
