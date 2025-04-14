@@ -34,7 +34,10 @@
     Confetti
   </button>
 
-  <audio id="yaySound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_e1b5c4f60d.mp3?filename=yay-6120.mp3"></audio>
+  <audio id="yaySound" preload="auto">
+    <source src="https://assets.mixkit.co/active_storage/sfx/321/321-preview.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -46,7 +49,7 @@
         setTimeout(() => button.classList.remove('shake'), 400);
 
         yaySound.currentTime = 0;
-        yaySound.play();
+        yaySound.play().catch(err => console.warn("Audio playback failed:", err));
 
         const defaults = {
           spread: 70,
