@@ -34,12 +34,19 @@
     Confetti
   </button>
 
+  <audio id="yaySound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_e1b5c4f60d.mp3?filename=yay-6120.mp3"></audio>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const button = document.getElementById('confettiButton');
+      const yaySound = document.getElementById('yaySound');
+
       button.addEventListener('click', () => {
         button.classList.add('shake');
         setTimeout(() => button.classList.remove('shake'), 400);
+
+        yaySound.currentTime = 0;
+        yaySound.play();
 
         const defaults = {
           spread: 70,
